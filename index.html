@@ -1,4 +1,327 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Anatomy Explorer — Layout Clone</title>
+<style>
+  /* ---- Reset & base ---- */
+  :root{
+    --accent:#0b67b2;
+    --muted:#6b7280;
+    --bg:#f7f7f9;
+    --card:#ffffff;
+    --max-width:1100px;
+    --gap:18px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:var(--bg);
+    color:#111827;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+  }
+
+  /* ---- Top header ---- */
+  .topbar{
+    background:#0b67b2;
+    color:white;
+    padding:12px 18px;
+    position:sticky; top:0; z-index:20;
+    box-shadow:0 1px 0 rgba(0,0,0,0.06);
+  }
+  .topbar .container{
+    max-width:var(--max-width); margin:0 auto; display:flex; gap:12px; align-items:center;
+  }
+  .logo { font-weight:700; letter-spacing:0.2px; font-size:1.05rem; }
+  .topnav{ margin-left:auto; display:flex; gap:12px; align-items:center;}
+  .topnav a{ color:inherit; text-decoration:none; font-size:0.95rem; opacity:0.95 }
+  .hamburger{ display:none; cursor:pointer; border:0; background:transparent; color:white; font-size:20px }
+
+  /* ---- Layout: two-column with sticky sidebar ---- */
+  .wrap{ max-width:var(--max-width); margin:20px auto; padding:0 18px; display:grid; grid-template-columns: 280px 1fr; gap:var(--gap); align-items:start; }
+
+  /* Sidebar */
+  .sidebar{
+    position:sticky; top:78px; align-self:start;
+    background:var(--card); border-radius:12px; padding:16px; box-shadow:0 6px 18px rgba(12,14,20,0.04);
+    height:fit-content;
+  }
+  .sidebar h3{ margin:0 0 10px 0; font-size:0.95rem; color:#0f172a; }
+  .sys-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;}
+  .sys-list a{
+    display:block; padding:8px 10px; border-radius:8px; text-decoration:none; color:#0f172a; font-weight:600;
+  }
+  .sys-list a:hover{ background:#eef6ff; color:var(--accent) }
+
+  /* Main content */
+  .main{
+    display:flex; flex-direction:column; gap:16px;
+  }
+  .hero{
+    background:linear-gradient(180deg, rgba(11,103,178,0.06), rgba(11,103,178,0.02));
+    padding:18px; border-radius:12px; display:flex; gap:18px; align-items:center;
+  }
+  .hero h1{ margin:0; font-size:1.6rem; }
+  .hero p{ margin:6px 0 0 0; color:var(--muted); }
+
+  /* Grid of cards (anatomy systems) */
+  .grid{
+    display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:14px;
+  }
+  .card{
+    background:var(--card); border-radius:10px; padding:12px; box-shadow:0 6px 14px rgba(14,20,30,0.04);
+    display:flex; gap:12px; align-items:flex-start; min-height:88px;
+  }
+  .thumb{ width:68px; height:68px; flex:0 0 68px; border-radius:8px; background:linear-gradient(135deg,#eef2ff,#f0f9ff); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--accent); }
+  .card h4{ margin:0 0 6px 0; font-size:1rem; }
+  .card p{ margin:0; color:var(--muted); font-size:0.9rem; }
+
+  /* Featured logos (horizontal strip) */
+  .featured{
+    display:flex; gap:18px; align-items:center; padding:12px; background:transparent; flex-wrap:wrap;
+  }
+  .featured img{ height:34px; opacity:0.9; filter:grayscale(0.02); }
+
+  /* Newsletter box */
+  .newsletter{
+    background:var(--card); padding:14px; border-radius:10px; display:flex; gap:12px; align-items:center; max-width:760px;
+    box-shadow:0 6px 14px rgba(14,20,30,0.04);
+  }
+  .newsletter input[type=email]{ flex:1; padding:10px 12px; border-radius:8px; border:1px solid #e6e9ee; font-size:0.95rem; }
+  .newsletter button{ padding:10px 14px; border-radius:8px; border:0; background:var(--accent); color:white; cursor:pointer; font-weight:600; }
+
+  /* Footer */
+  footer{ margin-top:20px; padding:18px; color:var(--muted); font-size:0.9rem; text-align:center; }
+
+  /* ---- Responsive ---- */
+  @media (max-width:980px){
+    .wrap{ grid-template-columns: 1fr; }
+    .sidebar{ position:relative; top:0; margin-bottom:6px; }
+    .topnav{ display:none; }
+    .hamburger{ display:block; }
+    .mobile-nav{ display:none; background:var(--card); padding:12px; border-radius:10px; margin-top:8px; box-shadow:0 10px 30px rgba(12,14,20,0.05) }
+    .mobile-nav a{ display:block; padding:8px 6px; border-radius:6px; text-decoration:none; color:#0f172a; font-weight:600; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top header -->
+  <header class="topbar">
+    <div class="container">
+      <div class="logo">Anatomy Explorer</div>
+      <nav class="topnav" aria-label="top navigation">
+        <a href="#">Research</a>
+        <a href="#">Systems</a>
+        <a href="#">Shop</a>
+        <a href="#">About</a>
+      </nav>
+
+      <!-- hamburger for mobile -->
+      <button class="hamburger" aria-expanded="false" aria-controls="mobileNav" id="hambtn">☰</button>
+    </div>
+
+    <!-- mobile nav (hidden on wide screens) -->
+    <div id="mobileNav" class="mobile-nav" aria-hidden="true">
+      <a href="#">Skeletal</a>
+      <a href="#">Muscular</a>
+      <a href="#">Cardiovascular</a>
+      <a href="#">Digestive</a>
+    </div>
+  </header>
+
+  <!-- Main two-column layout -->
+  <div class="wrap">
+
+    <!-- Sidebar: system links -->
+    <aside class="sidebar" aria-label="anatomy systems">
+      <h3>ANATOMY SYSTEMS</h3>
+      <ul class="sys-list">
+        <li><a href="#">Skeletal System</a></li>
+        <li><a href="#">Muscular System</a></li>
+        <li><a href="#">Cardiovascular System</a></li>
+        <li><a href="#">Digestive System</a></li>
+        <li><a href="#">Nervous System</a></li>
+        <li><a href="#">Respiratory System</a></li>
+        <li><a href="#">Urinary System</a></li>
+        <li><a href="#">Integumentary System</a></li>
+        <li><a href="#">Endocrine System</a></li>
+        <li><a href="#">Immune / Lymphatic</a></li>
+        <li><a href="#">Female Reproductive</a></li>
+        <li><a href="#">Male Reproductive</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+      <section class="hero" role="region" aria-label="hero">
+        <div style="flex:1;">
+          <h1>Innerbody Anatomy Explorer</h1>
+          <p>There are 12 major anatomy systems. Select a system below to get started.</p>
+        </div>
+        <div style="min-width:220px; text-align:right;">
+          <!-- placeholder illustration -->
+          <div style="width:160px;height:90px;background:linear-gradient(135deg,#dff1ff,#eef8ff); border-radius:8px; display:inline-flex; align-items:center; justify-content:center; color:var(--accent); font-weight:700;">3D View</div>
+        </div>
+      </section>
+
+      <!-- grid of system cards -->
+      <section>
+        <div class="grid" aria-label="anatomy system cards">
+          <!-- repeat for 12 systems; replace hrefs/images as needed -->
+          <article class="card">
+            <div class="thumb">Sk</div>
+            <div>
+              <h4><a href="#" style="color:inherit; text-decoration:none;">Skeletal System</a></h4>
+              <p>The skeletal system includes all of the bones and joints in the body.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="thumb">Mu</div>
+            <div>
+              <h4><a href="#" style="color:inherit; text-decoration:none;">Muscular System</a></h4>
+              <p>Responsible for movement of the human body.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="thumb">CV</div>
+            <div>
+              <h4><a href="#" style="color:inherit; text-decoration:none;">Cardiovascular System</a></h4>
+              <p>Heart, blood vessels, and blood — transport network for the body.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="thumb">Di</div>
+            <div>
+              <h4><a href="#" style="color:inherit; text-decoration:none;">Digestive System</a></h4>
+              <p>Organs that convert food into energy and nutrients.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="thumb">Ne</div>
+            <div>
+              <h4><a href="#" style="color:inherit; text-decoration:none;">Nervous System</a></h4>
+              <p>Brain, spinal cord, sensory organs and peripheral nerves.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="thumb">Re</div>
+            <div>
+              <h4><a href="#" style="color:inherit; text-decoration:none;">Respiratory System</a></h4>
+              <p>Provides oxygen to the body's cells and removes CO₂.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="thumb">Ur</div>
+            <div>
+              <h4><a href="#" style="color:inherit; text-decoration:none;">Urinary System</a></h4>
+              <p>Kidneys, ureters, bladder and urethra.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="thumb">In</div>
+            <div>
+              <h4><a href="#" style="color:inherit; text-decoration:none;">Integumentary</a></h4>
+              <p>Skin, hair, nails and associated glands.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="thumb">En</div>
+            <div>
+              <h4><a href="#" style="color:inherit; text-decoration:none;">Endocrine System</a></h4>
+              <p>Glands and hormones that regulate body functions.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="thumb">Im</div>
+            <div>
+              <h4><a href="#" style="color:inherit; text-decoration:none;">Immune/Lymphatic</a></h4>
+              <p>Immune organs and lymph vessels that defend against disease.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="thumb">FR</div>
+            <div>
+              <h4><a href="#" style="color:inherit; text-decoration:none;">Female Reproductive</a></h4>
+              <p>Ovaries, uterus, vagina, and mammary glands.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="thumb">MR</div>
+            <div>
+              <h4><a href="#" style="color:inherit; text-decoration:none;">Male Reproductive</a></h4>
+              <p>Scrotum, testes, ducts and sex glands.</p>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Featured logos -->
+      <section>
+        <h3 style="margin:8px 0 8px 0;">We've been featured in</h3>
+        <div class="featured" role="list">
+          <!-- use real logos or svg sources in production -->
+          <img src="https://via.placeholder.com/160x34?text=Harvard" alt="Harvard">
+          <img src="https://via.placeholder.com/120x34?text=NPR" alt="NPR">
+          <img src="https://via.placeholder.com/140x34?text=NY+Times" alt="NY Times">
+          <img src="https://via.placeholder.com/120x34?text=Lifehacker" alt="Lifehacker">
+        </div>
+      </section>
+
+      <!-- Newsletter -->
+      <section style="margin-top:6px;">
+        <div class="newsletter" role="form" aria-label="newsletter signup">
+          <div style="flex:0 0 44px; width:44px; height:44px; border-radius:8px; background:linear-gradient(135deg,#f1f5f9,#eef2ff); display:flex; align-items:center; justify-content:center;">✉️</div>
+          <div style="flex:1;">
+            <strong>Get the Innerbody Newsletter</strong>
+            <div style="color:var(--muted); font-size:0.9rem;">Be the first to know about our latest reviews and biggest discounts.</div>
+          </div>
+          <input type="email" placeholder="Your email" aria-label="email address">
+          <button type="button">Subscribe</button>
+        </div>
+      </section>
+
+      <footer>
+        <div>© Innerbody Research — layout clone demo</div>
+      </footer>
+    </main>
+  </div>
+
+<script>
+  // Mobile nav toggle
+  const hb = document.getElementById('hambtn');
+  const mnav = document.getElementById('mobileNav');
+  hb.addEventListener('click', () => {
+    const open = hb.getAttribute('aria-expanded') === 'true';
+    hb.setAttribute('aria-expanded', String(!open));
+    if(open){
+      mnav.style.display = 'none';
+      mnav.setAttribute('aria-hidden','true');
+    } else {
+      mnav.style.display = 'block';
+      mnav.setAttribute('aria-hidden','false');
+    }
+  });
+
+  // Minimal accessibility: keyboard toggle
+  hb.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') hb.click(); });
+</script>
+</body>
 </html>
