@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Anatomy Explorer | Nervous System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <script src="../js/components.js"></script>
+    <script>injectNav('systems');</script>
+
+    <main class="page-transition">
+        <header class="system-header">
+            <h1>Nervous System</h1>
+            <div class="placeholder-text">[ PLACEHOLDER: Add a 2–3 sentence overview of the Nervous System here ]</div>
+        </header>
+
+        <section class="system-container">
+            <div class="diagram-wrapper">
+                <div class="diagram-placeholder">
+                    [ PLACEHOLDER: Insert Nervous System anatomical diagram here ]
+                    <button class="hotspot" data-organ="Brain" style="top: 5%; left: 50%;"><span class="hotspot-label">Brain</span></button>
+                    <button class="hotspot" data-organ="Spinal Cord" style="top: 35%; left: 50%;"><span class="hotspot-label">Spinal Cord</span></button>
+                    <button class="hotspot" data-organ="Peripheral Nerves" style="top: 60%; left: 30%;"><span class="hotspot-label">Peripheral Nerves</span></button>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="sidebar-content">
+                    <button class="close-sidebar">✕</button>
+                    <h2>Organ Name</h2>
+                    <hr style="border: none; border-top: 2px solid #C0392B; margin: 12px 0 20px;">
+                    <div class="info-section"><div class="label">Location</div><div class="content">[ PLACEHOLDER ]</div></div>
+                    <div class="info-section"><div class="label">Function</div><div class="content">[ PLACEHOLDER ]</div></div>
+                    <div class="info-section"><div class="label">Description</div><div class="content">[ PLACEHOLDER ]</div></div>
+                    <div class="info-section"><div class="label">Fun Fact</div><div class="content">[ PLACEHOLDER ]</div></div>
+                </div>
+            </aside>
+        </section>
+
+        <section class="did-you-know">
+            <h3>Did You Know?</h3>
+            <p>[ PLACEHOLDER: Add a surprising fact about the Nervous System here ]</p>
+        </section>
+    </main>
+
+    <a href="../index.html" class="back-btn">← Back to Systems</a>
+    <script>injectFooter();</script>
+    <script src="../js/main.js"></script>
+    <script src="../js/diagram.js"></script>
+</body>
+</html>

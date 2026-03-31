@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Anatomy Explorer | Respiratory Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <script src="../js/components.js"></script>
+    <script>injectNav('quiz');</script>
+
+    <main class="page-transition">
+        <div style="text-align: center; padding-top: 60px;">
+            <h1 style="font-size: 32px;">Respiratory System Quiz</h1>
+            <div class="placeholder-text" style="max-width: 400px; margin: 15px auto;">[ PLACEHOLDER: Add a short intro sentence for this quiz ]</div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="progress-container"><div class="progress-bar"></div></div>
+            <div class="quiz-content">
+                <p class="progress-text" style="font-size: 12px; color: #888; margin-bottom: 20px; font-weight: 600; text-transform: uppercase;"></p>
+                <h2 class="question-text" style="margin-bottom: 30px; font-size: 22px;"></h2>
+                <div class="options-container"></div>
+            </div>
+            <div class="results-content" style="display: none; text-align: center;">
+                <h2 style="font-size: 32px; margin-bottom: 20px;">Quiz Complete!</h2>
+                <p class="score-display" style="font-size: 24px; color: #C0392B; font-weight: 700; margin-bottom: 30px;"></p>
+                <div style="display: flex; gap: 20px; justify-content: center;">
+                    <button class="retry-btn" style="background: #C0392B; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer;">Try Again</button>
+                    <a href="../systems/respiratory.html" style="background: #1A1A2E; color: white; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 600;">Back to Respiratory</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    window.quizQuestions = [
+      {
+        question: "What is the main job of the nasal cavity when you breathe in?",
+        options: ["Produce mucus", "Filter, warm, and moisten the air", "Send signals to the brain", "Push air to the stomach"],
+        correct: 1
+      },
+      {
+        question: "What are the tiny hairs inside your nose called, and what do they do?",
+        options: ["Villi — absorb nutrients", "Cilia — trap dust and particles", "Dendrites — send signals", "Follicles — produce oil"],
+        correct: 1
+      },
+      {
+        question: "What two destinations does the pharynx route substances to?",
+        options: ["Stomach and brain", "Heart and lungs", "Trachea for air and esophagus for food", "Mouth and nose"],
+        correct: 2
+      },
+      {
+        question: "What is the epiglottis and what does it do?",
+        options: ["A muscle that expands the lungs", "A ring of cartilage in the trachea", "A flap in the larynx that closes over the airway when you swallow", "A membrane surrounding the lungs"],
+        correct: 2
+      },
+      {
+        question: "What keeps the trachea from collapsing when you breathe in?",
+        options: ["Muscle contractions", "C-shaped rings of cartilage", "Air pressure alone", "The diaphragm pushing upward"],
+        correct: 1
+      },
+      {
+        question: "Why does the left lung have two lobes instead of three?",
+        options: ["It is less important than the right lung", "To make room for the stomach", "To make room for the heart", "It develops later in life"],
+        correct: 2
+      },
+      {
+        question: "What happens to the diaphragm when you inhale?",
+        options: ["It relaxes and rises", "It contracts and flattens downward", "It moves left and right", "It stays completely still"],
+        correct: 1
+      },
+      {
+        question: "[PLACEHOLDER: Respiratory Quiz Q8]",
+        options: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+        correct: 0
+      },
+      {
+        question: "[PLACEHOLDER: Respiratory Quiz Q9]",
+        options: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+        correct: 0
+      },
+      {
+        question: "[PLACEHOLDER: Respiratory Quiz Q10]",
+        options: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+        correct: 0
+      },
+      {
+        question: "[PLACEHOLDER: Respiratory Quiz Q11]",
+        options: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+        correct: 0
+      },
+      {
+        question: "[PLACEHOLDER: Respiratory Quiz Q12]",
+        options: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+        correct: 0
+      },
+      {
+        question: "[PLACEHOLDER: Respiratory Quiz Q13]",
+        options: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+        correct: 0
+      },
+      {
+        question: "[PLACEHOLDER: Respiratory Quiz Q14]",
+        options: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+        correct: 0
+      },
+      {
+        question: "[PLACEHOLDER: Respiratory Quiz Q15]",
+        options: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+        correct: 0
+      },
+      {
+        question: "[PLACEHOLDER: Respiratory Quiz Q16]",
+        options: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+        correct: 0
+      },
+      {
+        question: "[PLACEHOLDER: Respiratory Quiz Q17]",
+        options: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+        correct: 0
+      },
+      {
+        question: "[PLACEHOLDER: Respiratory Quiz Q18]",
+        options: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+        correct: 0
+      },
+      {
+        question: "[PLACEHOLDER: Respiratory Quiz Q19]",
+        options: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+        correct: 0
+      },
+      {
+        question: "[PLACEHOLDER: Respiratory Quiz Q20]",
+        options: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+        correct: 0
+      },
+      {
+        question: "[PLACEHOLDER: Respiratory Quiz Q21]",
+        options: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+        correct: 0
+      },
+      {
+        question: "[PLACEHOLDER: Respiratory Quiz Q22]",
+        options: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+        correct: 0
+      },
+      {
+        question: "[PLACEHOLDER: Respiratory Quiz Q23]",
+        options: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+        correct: 0
+      },
+      {
+        question: "[PLACEHOLDER: Respiratory Quiz Q24]",
+        options: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+        correct: 0
+      }
+    ];
+    </script>
+    <script>injectFooter();</script>
+    <script src="../js/main.js"></script>
+    <script src="../js/quiz.js"></script>
+</body>
+</html>
