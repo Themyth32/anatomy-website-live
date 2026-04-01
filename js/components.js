@@ -3,7 +3,7 @@ function injectNav(activePage) {
     
     const navHTML = `
     <nav>
-        <a href="${depth}index.html" class="logo-placeholder">[ LOGO HERE ]</a>
+        <a href="${depth}index.html" style="background: #C0392B; padding: 8px 16px; border-radius: 6px; text-decoration: none; color: white; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 8px;">🤍 Anatomy Archive</a>
         <div class="nav-links">
             <a href="${depth}index.html" class="${activePage === 'home' ? 'active' : ''}">Home</a>
             <div class="dropdown">
@@ -43,7 +43,7 @@ function injectFooter() {
     <footer id="sources">
         <div class="footer-grid">
             <div class="footer-col">
-                <div class="footer-logo">[ LOGO HERE ]</div>
+                <a href="${depth}index.html" style="background: #C0392B; padding: 8px 16px; border-radius: 6px; text-decoration: none; color: white; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px;">🤍 Anatomy Archive</a>
                 <p style="font-weight: 700; color: white; margin-bottom: 5px;">Human Anatomy Explorer</p>
                 <p class="placeholder-text" style="font-size: 12px;">[ PLACEHOLDER: Tagline ]</p>
             </div>

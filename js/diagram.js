@@ -51,12 +51,29 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
+    const didYouKnow = {
+      "Nose and Nasal Cavity": "Your nose can detect over 1 trillion different smells — and it has a rest cycle where one nostril does most of the work while the other rests, switching every few hours.",
+      "Pharynx": "The pharynx acts as a resonance chamber that shapes the quality of your voice — which is why your voice sounds different when you're congested and your throat is swollen.",
+      "Larynx": "During puberty, the larynx can grow up to 60% larger — especially in males — making the vocal cords longer and producing a lower pitch.",
+      "Trachea": "The cilia lining your trachea beat in coordinated waves up to 1,000 times per minute, sweeping mucus and debris upward in a process called the mucociliary escalator.",
+      "Lungs": "If you could unfold and flatten all the internal surfaces of both lungs, the total area would be roughly the size of a tennis court — around 70 square metres — all packed inside your chest.",
+      "Bronchi": "If you stretched out all the airways in your lungs — from the bronchi down to the tiniest bronchioles — end to end, they would span roughly 1,500 miles.",
+      "Diaphragm": "Hiccups are caused by sudden, involuntary spasms of the diaphragm. The hic sound is your vocal cords snapping shut in response. Scientists still don't fully agree on why hiccups exist."
+    };
+
     const hotspots = document.querySelectorAll('.hotspot');
     const sidebar = document.querySelector('.sidebar');
     const diagramWrapper = document.querySelector('.diagram-wrapper');
     const diagramPlaceholder = document.querySelector('.diagram-placeholder');
     const closeSidebarBtn = document.querySelector('.close-sidebar');
     
+    const dykSection = document.querySelector('.did-you-know');
+    if (dykSection) {
+        dykSection.style.opacity = '0';
+        dykSection.style.transform = 'translateY(12px)';
+        dykSection.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+    }
+
     hotspots.forEach(hotspot => {
         hotspot.addEventListener('click', () => {
             const organ = hotspot.getAttribute('data-organ');
@@ -86,7 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // 4. Update Did You Know
             const didYouKnowText = document.getElementById('did-you-know-text');
             if (didYouKnowText) {
-                didYouKnowText.textContent = data.funFact || '—';
+                didYouKnowText.textContent = didYouKnow[organ] || '—';
+                if (dykSection) {
+                    dykSection.style.opacity = '1';
+                    dykSection.style.transform = 'translateY(0)';
+                }
             }
 
             // 5. Open Sidebar
@@ -101,6 +122,10 @@ document.addEventListener('DOMContentLoaded', () => {
             diagramPlaceholder.style.transform = 'scale(1)';
             diagramWrapper.style.width = '';
             hotspots.forEach(h => h.classList.remove('active'));
+            if (dykSection) {
+                dykSection.style.opacity = '0';
+                dykSection.style.transform = 'translateY(12px)';
+            }
         });
     }
 });
